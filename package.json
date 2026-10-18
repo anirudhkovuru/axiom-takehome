@@ -1,0 +1,49 @@
+{
+  "name": "axiom-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c green,cyan \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:web": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
+    "dev:api": ".venv/bin/uvicorn backend.app.main:app --reload --reload-dir backend --port 8000",
+    "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
+    "start": "concurrently -k -n api,web -c green,cyan \"npm:start:api\" \"npm:start:web\"",
+    "start:web": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
+    "start:api": ".venv/bin/uvicorn backend.app.main:app --port 8000",
+    "setup:python": "python3 -m venv .venv && .venv/bin/pip install -r backend/requirements.txt",
+    "download:data": "bash scripts/download-data.sh",
+    "test": "npm run build && node --test tests/rendered-html.test.mjs && npm run test:backend",
+    "test:backend": ".venv/bin/python -m pytest backend/tests",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
+  },
+  "dependencies": {
+    "lucide-react": "^1.59.0",
+    "next": "16.2.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.26",
+    "concurrently": "^10.0.6",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.6",
+    "react-server-dom-webpack": "19.2.6",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "vinext": "0.0.50",
+    "vite": "8.0.13",
+    "wrangler": "4.92.0"
+  },
+  "type": "module"
+}

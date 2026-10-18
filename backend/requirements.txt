@@ -1,0 +1,14 @@
+duckdb==1.5.6
+fastapi==0.143.3
+httpx==0.28.1
+matplotlib==3.11.2
+numpy==2.5.4
+openai==3.35.1
+pandas==3.0.6
+pydantic-settings==2.16.0
+pytest==9.1.1
+python-dotenv==1.2.4
+scikit-learn==1.9.1
+scipy==1.18.1
+seaborn==0.13.2
+uvicorn[standard]==0.54.0
