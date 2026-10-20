@@ -53,7 +53,7 @@ button {
 
 .workbench-shell {
   display: grid;
-  grid-template-columns: 264px minmax(540px, 1fr) 342px;
+  grid-template-columns: 288px minmax(540px, 1fr) 342px;
   width: 100vw;
   height: 100vh;
   height: 100dvh;
@@ -62,7 +62,7 @@ button {
 }
 
 .workbench-shell:has(.artifact-panel.closed) {
-  grid-template-columns: 264px minmax(540px, 1fr) 0;
+  grid-template-columns: 288px minmax(540px, 1fr) 0;
 }
 
 .left-rail,
@@ -168,6 +168,8 @@ button {
 .rail-content {
   flex: 1;
   min-height: 0;
+  min-width: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   padding: 15px 0;
   scrollbar-width: thin;
@@ -201,6 +203,8 @@ button {
 
 .rail-list {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
   gap: 3px;
 }
 
@@ -208,6 +212,7 @@ button {
   position: relative;
   display: flex;
   align-items: center;
+  min-width: 0;
   width: 100%;
   padding: 4px;
   border: 1px solid transparent;
@@ -228,6 +233,7 @@ button {
 .rail-item-main {
   min-width: 0;
   flex: 1;
+  overflow: hidden;
   padding: 6px 5px;
   border: 0;
   text-align: left;
@@ -241,6 +247,7 @@ button {
   place-items: center;
   width: 25px;
   height: 25px;
+  margin-left: 3px;
   padding: 0;
   border: 0;
   border-radius: 6px;
@@ -268,6 +275,7 @@ button {
 }
 
 .rail-item-title {
+  width: 100%;
   font-size: 12.5px;
   font-weight: 600;
 }
@@ -1419,7 +1427,7 @@ button {
   .left-rail {
     position: fixed;
     inset: 0 auto 0 0;
-    width: 270px;
+    width: min(288px, calc(100vw - 28px));
     transform: translateX(-102%);
     transition: transform 180ms ease;
   }
